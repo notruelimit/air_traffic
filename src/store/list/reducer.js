@@ -8,6 +8,19 @@ export default (state = {}, action) => {
         location: action.location
       }
     }
+    case actionTypes.FETCH_AIR_TRAFFIC: {
+      return {
+        ...state,
+        fetching: true
+      }
+    }
+    case actionTypes.SET_AIR_TRAFFIC: {
+      return {
+        ...state,
+        airTraffic: action.airTraffic,
+        fetching: false
+      }
+    }
     default: {
       return state
     }

@@ -6,9 +6,8 @@ import { connect } from 'react-redux'
 class List extends Component {
   componentDidMount () {
     navigator.geolocation.getCurrentPosition(position => {
-      this.props.getLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude })
+      this.props.getLocationAndSetAirTraffic({ latitude: position.coords.latitude, longitude: position.coords.longitude })
     })
-    // https://adsbexchange.com/api/aircraft/json/lat/37.16611/lon/-119.44944/dist/10/
   }
 
   render () {
@@ -28,7 +27,7 @@ const mapStateToProps = ({ list }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getLocation: position => {
+    getLocationAndSetAirTraffic: position => {
       dispatch(getLocation(position))
     }
   }
