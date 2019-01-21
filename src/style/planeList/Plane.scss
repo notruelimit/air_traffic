@@ -5,10 +5,11 @@
   margin-top: 10px;
   display: flex;
   border-radius: $radius;
-  background-color: lightblue;
+  background: linear-gradient(to right top, rgb(79, 148, 194), rgb(124, 219, 253));
   padding-top: 10px;
   padding-bottom: 10px;
   transition: transform 0.5s;
+  cursor: pointer;
 
   &:first-child {
     margin-top: 0;

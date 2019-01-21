@@ -8,17 +8,14 @@ export const getLocation = location => dispatch => {
 
 const fetchAirTraffic = location => dispatch => {
   dispatch({ type: FETCH_AIR_TRAFFIC })
-  API.fetchAirTraffic()
+  API.fetchAirTraffic(location.latitude, location.longitude, 100)
     .then(res => {
-      dispatch(setAirTraffic(location, res.data.acList))
+      dispatch(setAirTraffic(res.data.acList))
     })
 }
   
-const setAirTraffic = ({ latitude, longitude }, airTraffic) => {
-  airTraffic = airTraffic.filter(plane => (
-    plane.Lat >= latitude - 1 && plane.Lat <= latitude + 1 &&
-    plane.Long >= longitude - 1 && plane.Long <= longitude + 1
-  )).map(plane => ({
+const setAirTraffic = airTraffic => {
+  airTraffic = airTraffic.map(plane => ({
     Id: plane.Id,
     Trak: plane.Trak,
     Alt: plane.Alt,
