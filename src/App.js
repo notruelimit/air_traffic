@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
-import List from './components/list/List'
+import PlaneList from './components/planeList/PlaneList'
 import './App.css'
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPlane } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPlane)
 
 class App extends Component {
   render () {
     return (
       <div className="App">
-        <List />
+        <PlaneList />
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import list from './list/reducer'
+import planeList from './planeList/reducer'
 
-export default createStore(combineReducers({ list }), applyMiddleware(thunk))
+export default createStore(combineReducers({ planeList }), applyMiddleware(thunk))

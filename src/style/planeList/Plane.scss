@@ -1,0 +1,69 @@
+.Plane {
+  $radius: 20px;
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  display: flex;
+  border-radius: $radius;
+  background-color: lightblue;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: transform 0.5s;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &__direction {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & > p {
+      text-align: center;
+      margin: 0;
+    }
+
+    @media screen and (max-width : 768px) {
+      flex: 1 1;
+    }
+  }
+
+  &__altitude {
+    flex: 4 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    border-right: 1px solid rgba(0, 0, 0, 0.15);
+
+    & > p {
+      text-align: center;
+      margin: 0;
+    }
+
+    @media screen and (max-width : 768px) {
+      flex: 2 2;
+    }
+  }
+
+  &__code-number {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & > p {
+      text-align: center;
+      margin: 0;
+    }
+
+    @media screen and (max-width : 768px) {
+      flex: 1 1;
+    }
+  }
+}
