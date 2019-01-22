@@ -16,8 +16,12 @@ class PlaneList extends Component {
     }, () => console.log('heyho'))
   }
 
+  componentWillUnmount () {
+    
+  }
+
   render () {
-    const planes = !this.props.planeList.fetching ?
+    let planes = !this.props.planeList.fetching ?
       this.props.planeList.airTraffic.map((plane, i) => {
         let { Alt, CNum, Trak, Id } = plane
         let bound = 'Unknown'

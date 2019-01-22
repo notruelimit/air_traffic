@@ -7,12 +7,10 @@ import { Link } from 'react-router-dom'
 
 class PlaneInfo extends Component {
   componentDidMount () {
-    if (this.props.planeInfo.plane) {
-      this.props.fetchSinglePlaneInfo(this.props.match.params.id)
-        .then(() => {
-          this.props.fetchSinglePlaneLogo(this.props.planeInfo.plane.Op)
-        })
-    }
+    this.props.fetchSinglePlaneInfo(this.props.match.params.id)
+      .then(res => {
+        this.props.fetchSinglePlaneLogo(res.data.acList[0].Op)
+      })
     document.addEventListener('keydown', this.returnToList)
   }
 
@@ -49,11 +47,11 @@ class PlaneInfo extends Component {
                 />
               }
             </div>
-            <div>
-              <p>Manufacturer: {plane.Man || 'Unknown'}</p>
-              <p>Model: {plane.Mdl || 'Unknown'}</p>
-              <p>From: {plane.From || 'Unknown'} </p>
-              <p>To: {plane.To || 'Unknown'}</p>
+            <div className="PlaneInfo__info__text">
+              <p><strong>Manufacturer:</strong> {plane.Man || 'Unknown'}</p>
+              <p><strong>Model:</strong> {plane.Mdl || 'Unknown'}</p>
+              <p><strong>From:</strong> {plane.From || 'Unknown'} </p>
+              <p><strong>To:</strong> {plane.To || 'Unknown'}</p>
             </div>
           </div>
         </div>

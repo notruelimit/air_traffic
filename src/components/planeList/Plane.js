@@ -21,11 +21,11 @@ export default function Plane (props) {
         {icon}
       </div>
       <div className="Plane__altitude">
-        <p>Altitude</p>
+        <p><strong>Altitude</strong></p>
         <p>{props.altitude ? props.altitude : 'Unknown'}</p>
       </div>
       <div className="Plane__code-number">
-        <p>Code Number</p>
+        <p><strong>Code Number</strong></p>
         <p>{props.code ? props.code : 'Unknown'}</p>
       </div>
     </div>

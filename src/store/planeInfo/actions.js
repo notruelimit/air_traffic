@@ -6,6 +6,7 @@ export const fetchSinglePlaneInfo = id => dispatch => {
   return API.fetchSinglePlaneInfo(id)
     .then(res => {
       dispatch(setSinglePlaneInfo(res.data.acList[0]))
+      return res
     })
 }
 
