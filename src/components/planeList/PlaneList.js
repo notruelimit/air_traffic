@@ -3,6 +3,7 @@ import Plane from './Plane'
 import { getLocation } from '../../store/planeList/actions'
 import { connect } from 'react-redux'
 import '../../style/planeList/PlaneList.scss'
+import { Link } from 'react-router-dom'
 
 class PlaneList extends Component {
   componentDidMount () {
@@ -11,13 +12,13 @@ class PlaneList extends Component {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       })
-    })
+    }, () => console.log('heyho'))
   }
 
   render () {
     const planes = !this.props.planeList.fetching ?
       this.props.planeList.airTraffic.map((plane, i) => {
-        let { Alt, CNum, Trak } = plane
+        let { Alt, CNum, Trak, Id } = plane
         let bound = 'Unknown'
         if (Trak > 0 && Trak < 180) {
           bound = 'east'
@@ -26,12 +27,21 @@ class PlaneList extends Component {
         }
 
         return (
-          <Plane
+          <div
             key={i}
-            altitude={Alt}
-            code={CNum}
-            bound={bound}
-          />
+            onClick={this.loadPlaneInfo}
+          >
+            <Link
+              to={`/${Id}`}
+              style={{textDecoration: 'none', color: 'black'}}
+            >
+              <Plane
+                altitude={Alt}
+                code={CNum}
+                bound={bound}
+              />
+            </Link>
+          </div>
         )
       }) :
       (<div className="PlaneList__loading">

@@ -16,7 +16,7 @@ const fetchAirTraffic = location => dispatch => {
   
 const setAirTraffic = airTraffic => {
   airTraffic = airTraffic.map(plane => ({
-    Id: plane.Id,
+    Id: plane.Icao,
     Trak: plane.Trak,
     Alt: plane.Alt,
     CNum: plane.CNum

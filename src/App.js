@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PlaneList from './components/planeList/PlaneList'
+import PlaneInfo from './components/planeInfo/PlaneInfo'
 import './App.css'
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlane } from '@fortawesome/free-solid-svg-icons'
@@ -11,7 +13,12 @@ class App extends Component {
   render () {
     return (
       <div className="App">
-        <PlaneList />
+      <BrowserRouter>
+          <Switch>
+            <Route path="/:id" component={PlaneInfo} />
+            <Route path="/" component={PlaneList} />
+          </Switch>
+      </BrowserRouter>
       </div>
     )
   }
