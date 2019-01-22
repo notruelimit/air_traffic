@@ -5,7 +5,7 @@
   margin-top: 10px;
   display: flex;
   border-radius: $radius;
-  background: linear-gradient(to right top, rgb(79, 148, 194), rgb(124, 219, 253));
+  background: var(--gradient-dark);
   padding-top: 10px;
   padding-bottom: 10px;
   transition: transform 0.5s;
@@ -13,6 +13,10 @@
 
   & > div > :first-child {
     margin-top: 0;
+  }
+
+  &:hover {
+    transform: scale(1.02)
   }
 
   &__direction {

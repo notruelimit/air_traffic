@@ -4,6 +4,7 @@ import { getLocation } from '../../store/planeList/actions'
 import { connect } from 'react-redux'
 import '../../style/planeList/PlaneList.scss'
 import { Link } from 'react-router-dom'
+import Loading from '../shared/Loading'
 
 class PlaneList extends Component {
   componentDidMount () {
@@ -44,9 +45,7 @@ class PlaneList extends Component {
           </div>
         )
       }) :
-      (<div className="PlaneList__loading">
-        <div className="PlaneList__loading__loader"></div>
-      </div>)
+      <Loading />
 
     return (
       <div className="PlaneList">
