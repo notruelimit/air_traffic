@@ -2,7 +2,7 @@
 
 * {
   --gradient-dark: linear-gradient(to right top, rgb(116, 216, 255), rgb(85, 210, 255));
-  --gradient-light: linear-gradient(to left bottom, rgb(200, 238, 255), rgb(128, 221, 255));
+  --gradient-light: linear-gradient(to left bottom, rgb(214, 239, 255), rgb(128, 221, 255));
 }
 
 body {

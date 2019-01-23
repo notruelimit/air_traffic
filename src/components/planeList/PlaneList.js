@@ -1,23 +1,50 @@
 import React, { Component } from 'react'
 import Plane from './Plane'
-import { getLocation } from '../../store/planeList/actions'
+import { getLocation, fetchAirTraffic } from '../../store/planeList/actions'
 import { connect } from 'react-redux'
 import '../../style/planeList/PlaneList.scss'
 import { Link } from 'react-router-dom'
 import Loading from '../shared/Loading'
 
 class PlaneList extends Component {
+  state = {
+    refreshTimer: 60
+  }
+
   componentDidMount () {
-    navigator.geolocation.getCurrentPosition(position => {
-      this.props.getLocationAndSetAirTraffic({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude
-      })
-    }, () => console.log('heyho'))
+    if (this.props.planeList.airTraffic.length < 1) {
+      navigator.geolocation.getCurrentPosition(position => {
+        this.props.getLocationAndSetAirTraffic({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        })
+        this.refreshListCountdown()
+      }, () => console.log('heyho'))
+    }
   }
 
   componentWillUnmount () {
-    
+    clearInterval(this.state.interval)
+  }
+
+  refreshListCountdown = (refreshTimer = this.state.refreshTimer) => {
+    let interval = setInterval(() => {
+      if (refreshTimer < 1) {
+        this.refreshList()
+        clearInterval(interval)
+      } else {
+        --refreshTimer
+      }
+    }, 1000)
+    this.setState(prevState => ({ ...prevState, interval }))
+  }
+
+  refreshList = () => {
+    this.props.fetchAirTraffic({
+      latitude: this.props.planeList.location.latitude,
+      longitude: this.props.planeList.location.longitude
+    })
+    this.refreshListCountdown(this.state.refreshTimer)
   }
 
   render () {
@@ -69,6 +96,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getLocationAndSetAirTraffic: position => {
       dispatch(getLocation(position))
+    },
+    fetchAirTraffic: location => {
+      dispatch(fetchAirTraffic(location))
     }
   }
 }

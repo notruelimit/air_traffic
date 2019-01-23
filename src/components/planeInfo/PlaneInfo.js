@@ -9,7 +9,11 @@ class PlaneInfo extends Component {
   componentDidMount () {
     this.props.fetchSinglePlaneInfo(this.props.match.params.id)
       .then(res => {
-        this.props.fetchSinglePlaneLogo(res.data.acList[0].Op)
+        if (res.data.acList[0]) {
+          this.props.fetchSinglePlaneLogo(res.data.acList[0].Op)
+        } else {
+          this.props.fetchSinglePlaneLogo(null)
+        }
       })
     document.addEventListener('keydown', this.returnToList)
   }

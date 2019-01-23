@@ -5,7 +5,11 @@ export const fetchSinglePlaneInfo = id => dispatch => {
   dispatch({ type: FETCH_SINGLE_PLANE_INFO })
   return API.fetchSinglePlaneInfo(id)
     .then(res => {
-      dispatch(setSinglePlaneInfo(res.data.acList[0]))
+      if (res.data.acList[0]) {
+        dispatch(setSinglePlaneInfo(res.data.acList[0]))
+      } else {
+        dispatch(setSinglePlaneInfo('Unknown'))
+      }
       return res
     })
 }
@@ -15,11 +19,15 @@ const setSinglePlaneInfo = plane => ({
   plane
 })
 
-export const fetchSinglePlaneLogo = companyName => dispatch => {
+export const fetchSinglePlaneLogo = (companyName) => dispatch => {
   dispatch({ type: FETCH_SINGLE_PLANE_LOGO })
   API.fetchSinglePlaneLogo(companyName)
     .then(res => {
-      dispatch(setSinglePlaneLogo(res.data.logo))
+      if (companyName) {
+        dispatch(setSinglePlaneLogo(res.data.logo))
+      } else {
+        dispatch(setSinglePlaneLogo(null))
+      }
     })
     .catch(() => {
       dispatch(setSinglePlaneLogo(null))

@@ -1,12 +1,12 @@
 import { GET_LOCATION, FETCH_AIR_TRAFFIC, SET_AIR_TRAFFIC } from './actionTypes'
-import { API } from '../../api/planeList'
+import API from '../../api/planeList'
 
 export const getLocation = location => dispatch => {
   dispatch(fetchAirTraffic(location))
   dispatch({ type: GET_LOCATION, location })
 }
 
-const fetchAirTraffic = location => dispatch => {
+export const fetchAirTraffic = location => dispatch => {
   dispatch({ type: FETCH_AIR_TRAFFIC })
   API.fetchAirTraffic(location.latitude, location.longitude, 100)
     .then(res => {
